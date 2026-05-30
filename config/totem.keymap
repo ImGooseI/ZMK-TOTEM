@@ -22,6 +22,12 @@
             key-positions = <0 1>;
             bindings = <&kp ESC>;
         };
+
+        combo_bksp {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <8 9>;
+            timeout-ms = <150>;
+        };
     };
 
     keymap {
