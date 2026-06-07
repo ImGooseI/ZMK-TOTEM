@@ -29,6 +29,18 @@
             key-positions = <8 9>;
             timeout-ms = <150>;
         };
+
+        ToNum_combo {
+            bindings = <&to 3>;
+            key-positions = <34 35>;
+            timeout-ms = <150>;
+        };
+
+        tab_combo {
+            bindings = <&kp TAB>;
+            key-positions = <10 11>;
+            timeout-ms = <150>;
+        };
     };
 
     keymap {
@@ -53,10 +65,10 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-         &kp Q  &kp W  &kp E             &kp R  &kp T                   &kp Y      &kp U  &kp I      &kp O    &kp P
-         &kp A  &kp S  &kp D             &kp F  &kp G                   &kp H      &kp J  &kp K      &kp L    &kp SEMI
-&kp TAB  &kp Z  &kp X  &kp C             &kp V  &kp B                   &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp BACKSPACE
-                       &kp LEFT_COMMAND  &to 1  &mt LEFT_SHIFT SPACE    &kp ENTER  &to 2  &trans
+        &kp Q           &kp W           &kp E        &kp R             &kp T          &kp Y        &kp U             &kp I        &kp O           &kp P
+        &mt LEFT_GUI A  &mt LEFT_ALT S  &mt RCTRL D  &mt LEFT_SHIFT F  &kp G          &kp H        &mt LEFT_SHIFT J  &mt RCTRL K  &mt LEFT_ALT L  &mt LEFT_GUI SEMI
+&trans  &kp Z           &kp X           &kp C        &kp V             &kp B          &kp N        &kp M             &kp COMMA    &kp DOT         &kp FSLH           &trans
+                                        &trans       &trans            &lt 1 SPACE    &lt 2 ENTER  &trans            &trans
             >;
         };
 
@@ -66,28 +78,28 @@
 
         Nav {
             bindings = <
-        &bt BT_CLR_ALL  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-        &trans          &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-&trans  &trans          &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                                &trans  &trans  &trans    &trans  &trans  &trans
+        &bt BT_CLR_ALL  &bt BT_NXT  &trans  &trans  &trans    &trans    &trans     &trans     &trans     &trans
+        &trans          &trans      &trans  &trans  &trans    &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &trans
+&trans  &trans          &trans      &trans  &trans  &trans    &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &trans  &trans
+                                    &trans  &trans  &trans    &trans    &trans     &trans
             >;
         };
 
         Symbol {
             bindings = <
-        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+        &kp EXCLAMATION  &kp AT         &kp HASH   &kp DOLLAR            &kp PERCENT              &kp UNDERSCORE  &kp PLUS          &kp LEFT_BRACE    &kp RIGHT_BRACE    &kp PIPE
+        &kp CARET        &kp AMPERSAND  &kp ASTRK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS    &kp LESS_THAN   &kp GREATER_THAN  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
+&trans  &trans           &trans         &trans     &trans                &trans                   &trans          &trans            &trans            &trans             &trans         &trans
+                                        &trans     &trans                &trans                   &trans          &trans            &trans
             >;
         };
 
         Num {
             bindings = <
-        &trans  &trans  &trans  &trans  &trans    &trans  &kp N1  &kp N2  &kp N3  &kp N0
-        &trans  &trans  &trans  &trans  &trans    &trans  &kp N4  &kp N5  &kp N6  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp N7  &kp N8  &kp N9  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+        &kp F1  &kp F2  &kp F3  &kp F4   &kp F5     &trans  &kp N1  &kp N2  &kp N3  &kp N0
+        &kp F6  &kp F7  &kp F8  &kp F9   &kp F10    &trans  &kp N4  &kp N5  &kp N6  &trans
+&trans  &trans  &trans  &trans  &kp F11  &kp F12    &trans  &kp N7  &kp N8  &kp N9  &trans  &trans
+                        &trans  &trans   &trans     &trans  &trans  &trans
             >;
         };
     };
