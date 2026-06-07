@@ -31,7 +31,7 @@
         };
 
         ToNum_combo {
-            bindings = <&to 3>;
+            bindings = <&tog 3>;
             key-positions = <34 35>;
             timeout-ms = <150>;
         };
