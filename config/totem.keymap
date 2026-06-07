@@ -31,7 +31,7 @@
         };
 
         ToNum_combo {
-            bindings = <&tog 3>;
+            bindings = <&lt 3 TILDE>;
             key-positions = <34 35>;
             timeout-ms = <150>;
         };
@@ -89,7 +89,7 @@
             bindings = <
         &kp EXCLAMATION  &kp AT         &kp HASH   &kp DOLLAR            &kp PERCENT              &kp UNDERSCORE  &kp PLUS          &kp LEFT_BRACE    &kp RIGHT_BRACE    &kp PIPE
         &kp CARET        &kp AMPERSAND  &kp ASTRK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS    &kp LESS_THAN   &kp GREATER_THAN  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
-&trans  &trans           &trans         &trans     &trans                &trans                   &trans          &trans            &trans            &trans             &trans         &trans
+&trans  &trans           &trans         &trans     &trans                &trans                   &kp TILDE       &trans            &trans            &trans             &trans         &trans
                                         &trans     &trans                &trans                   &trans          &trans            &trans
             >;
         };
