@@ -5,7 +5,8 @@
 #define BASE 0
 #define NAV  1
 #define SYM  2
-#define ADJ  3
+#define NUM  3
+#define HYPR 4
 
 &mt {
     quick-tap-ms = <100>;
@@ -19,87 +20,107 @@
         compatible = "zmk,combos";
 
         combo_esc {
-            timeout-ms = <150>;
-            key-positions = <0 1>;
+            timeout-ms = <50>;
+            key-positions = <0 1>;     // Q + W
             bindings = <&kp ESC>;
         };
 
-        combo_bksp {
-            bindings = <&kp BACKSPACE>;
-            key-positions = <8 9>;
-            timeout-ms = <150>;
-        };
-
-        ToNum_combo {
-            bindings = <&mo 3>;
-            key-positions = <34 35>;
-            timeout-ms = <150>;
-        };
-
-        tab_combo {
+        combo_tab {
+            timeout-ms = <50>;
+            key-positions = <10 11>;   // A + S
             bindings = <&kp TAB>;
-            key-positions = <10 11>;
-            timeout-ms = <150>;
+        };
+
+        combo_bksp {
+            timeout-ms = <50>;
+            key-positions = <8 9>;     // O + P
+            bindings = <&kp BACKSPACE>;
+        };
+
+        combo_del {
+            timeout-ms = <50>;
+            key-positions = <18 19>;   // . + /
+            bindings = <&kp DELETE>;
+        };
+
+        combo_caps_word {
+            timeout-ms = <50>;
+            key-positions = <13 16>;   // F + J
+            bindings = <&caps_word>;
+        };
+
+        combo_num {
+            timeout-ms = <50>;
+            key-positions = <37 38>;   // right mid + right outer
+            bindings = <&mo NUM>;
+        };
+
+        combo_screenshot {
+            timeout-ms = <50>;
+            key-positions = <35 36>;   // Space + Enter (cross-thumb)
+            bindings = <&kp PSCRN>;
+        };
+    };
+
+    behaviors {
+        caps_word: caps_word {
+            compatible = "zmk,behavior-caps-word";
+            label = "CAPS_WORD";
+            #binding-cells = <0>;
+            continue-list = <UNDERSCORE MINUS BACKSPACE>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
         base_layer {
-            // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-
             label = "BASE";
-
-            // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-            //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-            //             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     G     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     ;     ┃
-            //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-            //             ┃     A     ┃     R     ┃     S     ┃     T     ┃     D     ┃   ┃     H     ┃     N     ┃     E     ┃     I     ┃     O     ┃
-            // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-            // ┃           ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     K     ┃     M     ┃     ,     ┃     .     ┃     /     ┃           ┃
-            // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-            //                                     ┃           ┃    TAB    ┃    SPC    ┃   ┃   ENTER   ┃   BSPC    ┃           ┃
-            //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-
             bindings = <
-        &kp Q           &kp W           &kp E        &kp R             &kp T          &kp Y        &kp U             &kp I        &kp O           &kp P
-        &mt LEFT_GUI A  &mt LEFT_ALT S  &mt RCTRL D  &mt LEFT_SHIFT F  &kp G          &kp H        &mt LEFT_SHIFT J  &mt RCTRL K  &mt LEFT_ALT L  &mt LEFT_GUI SEMI
-&trans  &kp Z           &kp X           &kp C        &kp V             &kp B          &kp N        &kp M             &kp COMMA    &kp DOT         &kp FSLH           &trans
-                                        &trans       &kp LEFT_GUI      &lt 1 SPACE    &lt 2 ENTER  &trans            &trans
+        &kp Q           &kp W           &kp E        &kp R             &kp T          &kp Y  &kp U             &kp I        &kp O           &kp P
+        &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LCTRL D  &mt LEFT_SHIFT F  &kp G          &kp H  &mt LEFT_SHIFT J  &mt LCTRL K  &mt LEFT_ALT L  &mt LEFT_GUI SEMI
+&trans  &kp Z           &kp X           &kp C        &kp V             &kp B          &kp N  &kp M             &kp COMMA    &kp DOT         &kp FSLH           &trans
+                                        &trans       &mo SYM         &lt NAV SPACE  &lt HYPR RET  &mo NUM  &trans
             >;
         };
 
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-        // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-        Nav {
+        nav_layer {
+            label = "NAV";
             bindings = <
-        &bt BT_CLR_ALL  &bt BT_NXT  &trans  &trans  &trans    &trans    &trans     &trans     &trans     &trans
-        &trans          &trans      &trans  &trans  &trans    &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &trans
-&trans  &trans          &trans      &trans  &trans  &trans    &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &trans  &kp PRINTSCREEN
-                                    &trans  &trans  &trans    &trans    &trans     &trans
+        &trans        &trans        &trans     &trans         &trans     &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &trans
+        &kp LEFT_GUI  &kp LEFT_ALT  &kp LCTRL  &kp LEFT_SHIFT &trans     &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &trans
+&trans  &trans        &trans        &trans     &trans         &trans     &trans    &trans     &trans     &trans     &trans  &trans
+                                    &trans     &trans         &trans     &trans    &trans     &trans
             >;
         };
 
-        Symbol {
+        sym_layer {
+            label = "SYM";
             bindings = <
-        &kp EXCLAMATION  &kp AT         &kp HASH   &kp DOLLAR            &kp PERCENT              &kp UNDERSCORE  &kp MINUS         &kp LEFT_BRACE    &kp RIGHT_BRACE    &kp PIPE
-        &kp CARET        &kp AMPERSAND  &kp ASTRK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS    &kp LESS_THAN   &kp GREATER_THAN  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
-&trans  &trans           &trans         &trans     &trans                &trans                   &kp TILDE       &kp PLUS          &kp EQUAL         &trans             &trans         &trans
-                                        &trans     &trans                &trans                   &trans          &trans            &trans
+        &kp EXCL   &kp AT     &kp HASH   &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR
+        &kp GRAVE  &kp MINUS  &kp EQUAL  &kp LBKT  &kp RBKT     &kp LT     &kp GT    &kp LBRC  &kp RBRC  &kp BSLH
+&trans  &kp TILDE  &kp UNDER  &kp PLUS   &kp PIPE  &kp SQT      &kp DQT    &trans    &trans    &trans    &trans    &trans
+                              &trans     &trans    &trans       &trans     &trans    &trans
             >;
         };
 
-        Num {
+        num_layer {
+            label = "NUM";
             bindings = <
-        &kp F1  &kp F2  &kp F3  &kp F4   &kp F5     &trans  &kp N1  &kp N2  &kp N3  &kp N0
-        &kp F6  &kp F7  &kp F8  &kp F9   &kp F10    &trans  &kp N4  &kp N5  &kp N6  &trans
-&trans  &trans  &trans  &trans  &kp F11  &kp F12    &trans  &kp N7  &kp N8  &kp N9  &trans  &trans
-                        &trans  &trans   &trans     &trans  &trans  &trans
+        &kp F1   &kp F2   &kp F3  &kp F4  &kp F5     &kp N1  &kp N2  &kp N3  &kp PLUS   &kp STAR
+        &kp F6   &kp F7   &kp F8  &kp F9  &kp F10    &kp N4  &kp N5  &kp N6  &kp MINUS  &kp SLASH
+&trans  &kp F11  &kp F12  &trans  &trans  &trans     &kp N7  &kp N8  &kp N9  &kp N0     &kp DOT   &trans
+                          &trans  &trans  &trans     &trans  &trans  &trans
+            >;
+        };
+
+        hypr_layer {
+            label = "HYPR";
+            bindings = <
+        &kp LG(W)     &kp LG(LS(TAB))  &kp LG(TAB)   &kp LG(LC(TAB))  &kp LG(LC(C))    &kp LG(N1)      &kp LG(N2)      &kp LG(N3)      &kp LG(N4)      &kp LG(N5)
+        &kp LEFT_GUI  &kp LEFT_ALT     &kp LCTRL     &kp LEFT_SHIFT   &kp LG(F)        &kp LG(LEFT)    &kp LG(DOWN)    &kp LG(UP)      &kp LG(RIGHT)   &kp LG(LS(RIGHT))
+&trans  &kp LG(RET)   &kp LG(LS(RET)) &kp LG(LS(N)) &kp LG(T)        &kp LG(SPACE)    &kp LG(LS(N1))  &kp LG(LS(N2))  &kp LG(LS(N3))  &kp LG(LS(N4))  &kp LG(LS(N5))  &trans
+                                       &trans        &trans           &trans           &trans          &trans          &bt BT_NXT
             >;
         };
     };
